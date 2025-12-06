@@ -38,7 +38,7 @@
             </div>
 
             <button type="submit" class="btn btn-success">Update</button>
-            <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary">Cancel</a>
+            <a href="{{ route('admin.adminPanel') }}" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
 @endsection

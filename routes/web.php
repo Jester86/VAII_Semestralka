@@ -38,7 +38,7 @@ Route::post('/logout', function () {
 })->name('logout')->middleware('auth');
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.adminPanel');
     Route::get('/admin/{user}/edit', [AdminController::class, 'edit'])->name('admin.edit');
     Route::put('/admin/{user}', [AdminController::class, 'update'])->name('admin.update');
     Route::delete('/admin/{user}', [AdminController::class, 'destroy'])->name('admin.destroy');

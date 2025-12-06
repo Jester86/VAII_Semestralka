@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light custom-navbar mb-4">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="{{ url('/') }}">
+        <a class="navbar-brand fw-bold" href="{{ url('/dashboard') }}">
             Forum
         </a>
 
@@ -22,7 +22,7 @@
                     {{-- Admin panel link (only for admin role) --}}
                     @if(auth()->user()->role === 'admin')
                         <li class="nav-item">
-                            <a class="nav-link fw-bold admin-link" href="{{ route('admin.dashboard') }}">
+                            <a class="nav-link fw-bold admin-link" href="{{ route('admin.adminPanel') }}">
                                 Admin Panel
                             </a>
                         </li>
