@@ -1,0 +1,47 @@
+.custom-navbar {
+    background-color: #0d0d0d; /* deep terminal black */
+    border-bottom: 3px solid #00ff00; /* green terminal border */
+    box-shadow: 0 2px 5px rgba(0, 255, 0, 0.3); /* subtle glow */
+}
+
+.custom-navbar .navbar-brand {
+    color: #00ff00 !important; /* bright green */
+    font-family: "Courier New", Courier, monospace;
+    letter-spacing: 1px;
+    text-shadow: 0 0 3px #00ff00; /* glow effect */
+}
+
+.custom-navbar .nav-link {
+    color: #00ff00 !important; /* bright green */
+    font-family: "Courier New", Courier, monospace;
+    transition: all 0.2s;
+}
+
+.custom-navbar .nav-link:hover {
+    color: #0d0d0d !important;
+    background-color: #00ff00; /* glowing hover */
+    border-radius: 4px;
+}
+
+.custom-navbar .admin-link {
+    color: #ffcc00 !important; /* yellow for admin */
+}
+
+.custom-navbar .admin-link:hover {
+    color: #0d0d0d !important;
+    background-color: #ffcc00;
+}
+
+.custom-navbar .logout-link {
+    color: #ff4c4c !important; /* red for logout */
+}
+
+.custom-navbar .logout-link:hover {
+    color: #0d0d0d !important;
+    background-color: #ff4c4c;
+}
+
+.custom-navbar .welcome-text {
+    color: #00ff80 !important; /* subtle green */
+    font-weight: normal;
+}
