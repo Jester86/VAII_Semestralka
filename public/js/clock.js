@@ -3,14 +3,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const clockEl = document.getElementById('live-clock');
     const uptimeEl = document.getElementById('uptime');
 
-    // Store the start time when page loaded
-    const startTime = new Date();
+    // Get or set the session start time in localStorage
+    const SESSION_KEY = 'session_start_time';
+    let startTime;
+
+    const storedTime = localStorage.getItem(SESSION_KEY);
+    if (storedTime) {
+        startTime = new Date(parseInt(storedTime));
+    } else {
+        startTime = new Date();
+        localStorage.setItem(SESSION_KEY, startTime.getTime().toString());
+    }
 
     function pad(num) {
         return num.toString().padStart(2, '0');
     }
 
     function updateClock() {
+        if (!clockEl) return;
         const now = new Date();
         const hours = pad(now.getHours());
         const minutes = pad(now.getMinutes());
@@ -19,8 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateUptime() {
+        if (!uptimeEl) return;
         const now = new Date();
-        let diff = Math.floor((now - startTime) / 1000); // seconds elapsed
+        let diff = Math.floor((now - startTime) / 1000);
         const hours = pad(Math.floor(diff / 3600));
         diff %= 3600;
         const minutes = pad(Math.floor(diff / 60));
@@ -39,3 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1000);
 
 });
+
+// Clear session start time on logout (call this function when logging out)
+function clearSessionUptime() {
+    localStorage.removeItem('session_start_time');
+}

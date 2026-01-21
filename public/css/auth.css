@@ -114,6 +114,7 @@ button:hover {
     margin-top: 1rem;
     text-align: center;
 }
+
 #matrix-canvas {
     position: fixed;
     top: 0;
@@ -121,9 +122,4 @@ button:hover {
     width: 100%;
     height: 100%;
     z-index: 0; /* behind forms */
-}
-
-.login-box, .register-box {
-    position: relative;
-    z-index: 1;
 }

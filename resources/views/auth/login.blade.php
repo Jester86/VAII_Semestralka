@@ -33,6 +33,10 @@
     <div class="note">
         Don't have an account? <a href="{{ route('register') }}">Register</a>
     </div>
+
+    <div class="note" style="margin-top: 15px;">
+        <a href="{{ route('categories.index') }}">Browse the forum as a guest</a>
+    </div>
 </div>
 
 <script src="{{ asset('js/matrix.js') }}"></script>

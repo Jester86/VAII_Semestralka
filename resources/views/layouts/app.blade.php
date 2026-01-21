@@ -25,6 +25,15 @@
     @yield('content')
 </div>
 
+<!-- Modals section - rendered outside the dashboard-wrapper -->
+@yield('modals')
+
+<!-- Global Chat Widget -->
+@include('partials.chat-widget')
+
 <script src="{{ asset('js/clock.js') }}"></script>
+
+<!-- Page-specific scripts -->
+@yield('scripts')
 </body>
 </html>

@@ -24,7 +24,7 @@ class AdminController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:users,name,' . $user->id,
             'email' => 'required|email|unique:users,email,' . $user->id,
             'role' => 'required|string|in:user,admin',
             'reputation' => 'required|integer|min:0',
@@ -45,9 +45,15 @@ class AdminController extends Controller
     // Reset user password
     public function resetPassword(Request $request, User $user)
     {
-        $request->validate([
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
             'password' => 'required|string|min:6|confirmed',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('admin.adminPanel')
+                ->withErrors($validator)
+                ->with('reset_password_user_id', $user->id);
+        }
 
         $user->password = Hash::make($request->password);
         $user->save();

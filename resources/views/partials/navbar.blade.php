@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light custom-navbar mb-4">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="{{ url('/dashboard') }}">
-            Forum
+        <a class="navbar-brand fw-bold" href="{{ auth()->check() ? url('/dashboard') : route('categories.index') }}">
+            Dashboard
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
@@ -11,12 +11,30 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav ms-auto">
 
+                {{-- Forum link - visible to all --}}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('categories.index') }}">
+                        Forum
+                    </a>
+                </li>
+
                 @auth
-                    {{-- Welcome message --}}
-                    <li class="nav-item d-flex align-items-center me-3">
-                        <span class="welcome-text">
-                            Welcome, {{ auth()->user()->name }}
-                        </span>
+                    {{-- Messages link --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('messages.inbox') }}">
+                            Messages
+                            @php $unreadCount = auth()->user()->unreadMessagesCount(); @endphp
+                            @if($unreadCount > 0)
+                                <span class="badge bg-danger">{{ $unreadCount }}</span>
+                            @endif
+                        </a>
+                    </li>
+
+                    {{-- Profile link --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('profile.show', auth()->user()) }}">
+                            My Profile
+                        </a>
                     </li>
 
                     {{-- Admin panel link (only for admin role) --}}
@@ -31,7 +49,7 @@
                     {{-- Logout link --}}
                     <li class="nav-item">
                         <a class="nav-link logout-link" href="#"
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                           onclick="event.preventDefault(); clearSessionUptime(); document.getElementById('logout-form').submit();">
                             Logout
                         </a>
                     </li>
